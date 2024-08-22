@@ -16,7 +16,9 @@ const createNewGrid = () => {
   const numberOfSquares = gridSize * gridSize;
   const sideOfSquare = Math.sqrt(containerArea / numberOfSquares) - 6; // minus 6 because of margin + border
 
-  container.innerHTML = "";
+  while (container.firstChild) {
+    container.removeChild(container.lastChild);
+  }
   for (let i = 0; i < numberOfSquares; i++) {
     const square = document.createElement("div");
     square.setAttribute("class", "square");
