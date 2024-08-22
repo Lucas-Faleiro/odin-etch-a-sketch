@@ -8,8 +8,9 @@ const paintSquare = (e) => {
 };
 
 const createNewGrid = () => {
-  const gridSize = Number(prompt("Please enter new size of grid", 16));
-  if (typeof gridSize !== "number" || gridSize > 40) {
+  let gridSize = Number(prompt("Please enter new size of grid", 16));
+
+  if (!Number.isInteger(gridSize) || gridSize > 40 || gridSize < 1) {
     alert("Please write a number lower or equal 40");
     return "ERROR";
   }
