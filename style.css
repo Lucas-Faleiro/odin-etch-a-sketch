@@ -5,20 +5,21 @@
 body {
   min-height: 100dvh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 12px;
 }
 
 .container {
-  max-width: 960px;
-  max-height: 800px;
+  width: 480px;
+  height: 480px;
   display: flex;
   flex-wrap: wrap;
+  flex: 0 0 auto;
 }
 
 .square {
-  min-width: 194px;
-  min-height: 194px;
   border: 2px solid black;
   margin: 1px;
 }
