@@ -1,23 +1,35 @@
 const container = document.querySelector(".container");
-const button = document.querySelector("button");
+const gridBtn = document.querySelector("#grid-button");
+const clearBtn = document.querySelector("#clear-button");
 const containerArea = 480 * 480;
 const initialSquareSide = 24;
-let squareCounter = 0;
 
 const paintSquare = (e) => {
   let randomColor = "";
   while (randomColor.length < 6) {
     randomColor = Math.round(Math.random() * 0xffffff).toString(16);
   }
-  console.log(randomColor);
-
   e.target.style.backgroundColor = "#" + randomColor;
-  console.log(e.target);
-  squareCounter += 1;
-  console.log(squareCounter);
 
   if (e.target.style.backgroundColor)
     e.target.removeEventListener("mouseover", paintSquare);
+};
+
+const clear = () => {
+  const allSquares = document.querySelectorAll(".square");
+  const squareQuantity = allSquares.length;
+  const sideOfSquare = Math.sqrt(containerArea / squareQuantity) - 6; // minus 6 because of margin + border
+  while (container.firstChild) {
+    container.removeChild(container.lastChild);
+  }
+  for (let i = 0; i < squareQuantity; i++) {
+    const square = document.createElement("div");
+    square.setAttribute("class", "square");
+    square.style.width = sideOfSquare + "px";
+    square.style.height = sideOfSquare + "px";
+    square.addEventListener("mouseover", paintSquare);
+    container.appendChild(square);
+  }
 };
 
 const createNewGrid = () => {
@@ -53,4 +65,5 @@ for (let i = 0; i < 256; i++) {
   container.appendChild(square);
 }
 
-button.addEventListener("click", createNewGrid);
+gridBtn.addEventListener("click", createNewGrid);
+clearBtn.addEventListener("click", clear);
