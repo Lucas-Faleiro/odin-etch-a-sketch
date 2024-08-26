@@ -2,11 +2,22 @@ const container = document.querySelector(".container");
 const button = document.querySelector("button");
 const containerArea = 480 * 480;
 const initialSquareSide = 24;
+let squareCounter = 0;
 
 const paintSquare = (e) => {
-  const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+  let randomColor = "";
+  while (randomColor.length < 6) {
+    randomColor = Math.round(Math.random() * 0xffffff).toString(16);
+  }
+  console.log(randomColor);
+
   e.target.style.backgroundColor = "#" + randomColor;
-  e.target.removeEventListener("mouseover", paintSquare);
+  console.log(e.target);
+  squareCounter += 1;
+  console.log(squareCounter);
+
+  if (e.target.style.backgroundColor)
+    e.target.removeEventListener("mouseover", paintSquare);
 };
 
 const createNewGrid = () => {
