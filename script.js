@@ -4,14 +4,16 @@ const containerArea = 480 * 480;
 const initialSquareSide = 24;
 
 const paintSquare = (e) => {
-  e.target.style.backgroundColor = "black";
+  const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+  e.target.style.backgroundColor = "#" + randomColor;
+  e.target.removeEventListener("mouseover", paintSquare);
 };
 
 const createNewGrid = () => {
   let gridSize = Number(prompt("Please enter new size of grid", 16));
 
   if (!Number.isInteger(gridSize) || gridSize > 40 || gridSize < 1) {
-    alert("Please write a number lower or equal 40");
+    alert("Please type an intenger number (min 1, max 40)");
     return "ERROR";
   }
   const numberOfSquares = gridSize * gridSize;
